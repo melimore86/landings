@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(ggplot2)\nlibrary(tidyverse)\nlibrary(shinythemes)\nlibrary(rsconnect)\n\n\n#rsconnect::setAccountInfo(name='oysterprojectck',\n#                          token='F16D04C1548412A5806A896A22342C97',\n#                          secret='QoYg+iiKNQ8wysd6UfA18M4Y3YHortTMsTJT84eo')\n\n\n\ndata<- read.csv (\"data.csv\", header=T)\n\n# Define UI for application that draws a histogram\nui <- fluidPage(theme = shinytheme(\"yeti\"),\n              \n              \n   # Application title\n\n   titlePanel(\"Landings Comparison\"),\n   \n   sidebarLayout(\n      sidebarPanel(\n        selectInput(\"area1\", label= h4(\"Area\"), \n                    choices=unique(data$area), selected = \"Apalach Landings\"),\n        \n        selectInput(\"area2\", label= h4(\"Comparison Area\"), \n                    choices=unique(data$area), selected= \"State Landings\")\n      ),\n      \n      # Show a plot of the generated distribution\n      mainPanel(\n         plotOutput(\"plot\")\n      )\n   )\n)\n\n# Define server logic required to draw a histogram\nserver <- function(input, output) {\n  \n  plotInput <- reactive({\n    \n      data <- data %>% \n        filter(area == input$area1|area == input$area2)\n    \n      \n    ggplot(data=data, aes(x= Year, y= measurement)) +\n      labs(x= \"Year\", y=\"\")+\n      geom_point( size=2)+\n      geom_line(linetype = \"dashed\")+\n      scale_x_continuous(limits=c(1986,2017), breaks=c(1986,1990,1994,1998,2002,2006,2010,2014,2018)) +\n      theme(panel.border = element_rect(color = \"black\", size = 0.5, fill = NA, linetype=\"solid\"),axis.text.x = element_text(angle = 90, hjust = 1, size= 12)) +\n      facet_wrap(~area, ncol=1, scales= \"free_y\")\n    \n    \n   })\n  \n  output$plot <-renderPlot({\n    plotInput()\n    \n  })\n  \n}\n\n# Run the application \nshinyApp(ui = ui, server = server)\n\n",
+    "created" : 1526932030221.000,
+    "dirty" : false,
+    "encoding" : "ISO8859-1",
+    "folds" : "",
+    "hash" : "1963521629",
+    "id" : "44B73564",
+    "lastKnownWriteTime" : 1528225468,
+    "last_content_update" : 1528225469554,
+    "path" : "T:/Oyster Project/landing/landing/landings/app.R",
+    "project_path" : "landings/app.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
