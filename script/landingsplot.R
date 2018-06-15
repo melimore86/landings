@@ -1,4 +1,4 @@
-
+#libraries 
 library("cowplot")
 library("devtools")
 library("ggplot2")
@@ -11,14 +11,10 @@ library("scales")
 library("ggpubr")
 library("tidyverse")
 
-
-
-
+#Reading in the data
 landings <- read.csv("data/landings.csv", header= T)
 
 max<- subset(landings, landings$Year<2013)
-
-
 
 stland12<-
   ggplot(data=max, aes(x=Year, y=State_landings/100000))+
@@ -32,7 +28,6 @@ stland12<-
         plot.title =element_text(size=20, face='bold'),
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
-
 stland17<-
   ggplot(data=landings, aes(x=Year, y=State_landings/100000))+
   geom_line(size=2)+
@@ -45,7 +40,6 @@ stland17<-
         plot.title =element_text(size=20, face='bold'),
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
-
 
 stlandred<-
   ggplot()+
@@ -61,7 +55,6 @@ stlandred<-
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
 
-
 sttrip12<-
   ggplot(data=max, aes(x=Year, y=State_trips/1000))+
   geom_line(size=2)+
@@ -74,7 +67,6 @@ sttrip12<-
         plot.title =element_text(size=20, face='bold'),
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
-
 
 sttrip17<-
   ggplot(data=landings, aes(x=Year, y=State_trips/1000))+
@@ -217,7 +209,6 @@ apsttrip17<-
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
 
-
 apsttripred<-
   ggplot()+
   geom_line(data=landings, aes(x=Year, y=Apalach_trips/1000),size=2, color="red")+
@@ -231,8 +222,6 @@ apsttripred<-
         plot.title =element_text(size=20, face='bold'),
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
-
-
 
 apstpertrip12<-
   ggplot(data=max, aes(x=Year, y=Apalach_per_trip))+
@@ -304,8 +293,6 @@ swstland17<-
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
 
-
-
 swstlandred<-
   ggplot()+
   geom_line(data=landings, aes(x=Year, y=Suw_landings/1000),size=2, color="red")+
@@ -319,8 +306,6 @@ swstlandred<-
         plot.title =element_text(size=20, face='bold'),
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
-
-
 
 swsttrip12<-
   ggplot(data=max, aes(x=Year, y=Suw_trips/10000))+
@@ -349,7 +334,6 @@ swsttrip17<-
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
 
-
 swsttripred<-
   ggplot()+
   geom_line(data=landings, aes(x=Year, y=Suw_trips/10000),size=2, color="red")+
@@ -364,7 +348,6 @@ swsttripred<-
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
 
-
 swstpertrip12<-
   ggplot(data=max, aes(x=Year, y=Suw_per_trip))+
   geom_line(size=2)+
@@ -378,7 +361,6 @@ swstpertrip12<-
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
 
-
 swstpertrip17<-
   ggplot(data=landings, aes(x=Year, y=Suw_per_trip))+
   geom_line(size=2)+
@@ -391,7 +373,6 @@ swstpertrip17<-
         plot.title =element_text(size=20, face='bold'),
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
-
 
 swstpertripred<-
   ggplot()+
@@ -407,8 +388,6 @@ swstpertripred<-
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
 
-
-
 aplandings12<-
   ggplot(data=max, aes(x=Year, y=Apalach_landings/1000))+
   geom_line(size=2)+
@@ -417,7 +396,6 @@ aplandings12<-
   theme(panel.border = element_rect(color = "black", size = 0.5, fill = NA, linetype="solid"),
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
-
 
 aplandings17<-
   ggplot(data=landings, aes(x=Year, y=Apalach_landings/1000))+
@@ -428,13 +406,9 @@ aplandings17<-
         axis.text.x = element_text(angle = 90, hjust = 1),
         aspect.ratio = 0.70)
 
-
-
-ggsave("aplandings12.tiff", units="in", width=10, height=10, dpi=300, compression = 'lzw')
-ggsave("aplandings17.tiff", units="in", width=10, height=10, dpi=300, compression = 'lzw')
-
-
-
+#To save some plots
+#ggsave("aplandings12.tiff", units="in", width=10, height=10, dpi=300, compression = 'lzw')
+#ggsave("aplandings17.tiff", units="in", width=10, height=10, dpi=300, compression = 'lzw')
 
 alllandslines12<-
 ggdraw() +
@@ -448,10 +422,7 @@ ggdraw() +
   draw_plot(apsttrip12, x=0.67, y=0.3, width=0.3, height=0.30 ) +
   draw_plot(apstpertrip12, x=0.67, y=0.6, width=0.3, height=0.30 )
 
-setwd("C:/Users/Mel/Desktop")
-ggsave("alllandslines12.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
-
-
+#ggsave("alllandslines12.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
 
 alllandslines17<-
   ggdraw() +
@@ -465,9 +436,7 @@ alllandslines17<-
   draw_plot(apsttrip17, x=0.67, y=0.3, width=0.3, height=0.30 ) +
   draw_plot(apstpertrip17, x=0.67, y=0.6, width=0.3, height=0.30 )
 
-ggsave("alllandslines17.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
-
-
+#ggsave("alllandslines17.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
 
 alllandslinesred<-
   ggdraw() +
@@ -481,18 +450,15 @@ alllandslinesred<-
   draw_plot(apsttripred, x=0.67, y=0.3, width=0.3, height=0.30 ) +
   draw_plot(apstpertripred, x=0.67, y=0.6, width=0.3, height=0.30 )
 
-ggsave("alllandslinesred.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
-
-
+#ggsave("alllandslinesred.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
 
 stlandings12<-
 ggdraw() +
   draw_plot(stland12, x=0.2, y=0.05, width=0.50, height=0.28 ) +
   draw_plot(sttrip12, x=0.2, y=0.35, width=0.50, height=0.28 ) +
   draw_plot(stpertrip12, x=0.2, y=0.65, width=0.50, height=0.28 ) 
-setwd("C:/Users/Mel/Desktop")
-ggsave("stlandings12.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
 
+#ggsave("stlandings12.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
 
 stlandings17<-
   ggdraw() +
@@ -502,8 +468,6 @@ stlandings17<-
 setwd("C:/Users/Mel/Desktop")
 ggsave("stlandings17.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
 
-
-
 stlandingsred<-
   ggdraw() +
   draw_plot(stlandred, x=0.2, y=0.05, width=0.50, height=0.28 ) +
@@ -511,7 +475,6 @@ stlandingsred<-
   draw_plot(stpertripred, x=0.2, y=0.65, width=0.50, height=0.28 ) 
 setwd("C:/Users/Mel/Desktop")
 ggsave("stlandingsred.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
-
 
 ap12<-
   ggdraw() +
@@ -521,8 +484,6 @@ ap12<-
 setwd("C:/Users/Mel/Desktop")
 ggsave("ap12.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
 
-
-
 ap17<-
   ggdraw() +
   draw_plot(apstland17, x=0.2, y=0.05, width=0.50, height=0.28 ) +
@@ -531,7 +492,6 @@ ap17<-
 setwd("C:/Users/Mel/Desktop")
 ggsave("ap17.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
 
-
 apred<-
   ggdraw() +
   draw_plot(apstlandred, x=0.2, y=0.05, width=0.50, height=0.28 ) +
@@ -539,9 +499,6 @@ apred<-
   draw_plot(apstpertripred, x=0.2, y=0.65, width=0.50, height=0.28 ) 
 setwd("C:/Users/Mel/Desktop")
 ggsave("apred.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
-
-
-
 
 suw12<-
   ggdraw() +
@@ -558,7 +515,6 @@ suw17<-
   draw_plot(swstpertrip17, x=0.2, y=0.65, width=0.50, height=0.28 ) 
 setwd("C:/Users/Mel/Desktop")
 ggsave("suw17.tiff", units="in", width=25, height=25, dpi=300, compression = 'lzw')
-
 
 suwred<-
   ggdraw() +
