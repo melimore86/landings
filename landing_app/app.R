@@ -47,7 +47,7 @@ server <- function(input, output) {
     
       
     ggplot(data=data, aes(x= Year, y= measurement)) +
-      labs(x= "Year", y="")+
+      labs(x= "Year", y="Pounds")+
       geom_point( size=2)+
       geom_line(linetype = "dashed")+
       scale_x_continuous(limits=c(1986,2017), breaks=c(1986,1990,1994,1998,2002,2006,2010,2014,2018)) +
