@@ -1,8 +1,8 @@
-library(shiny)
-library(ggplot2)
-library(tidyverse)
-library(shinythemes)
-library(rsconnect)
+library("shiny")
+library("ggplot2")
+library("tidyverse")
+library("shinythemes")
+library("rsconnect")
 
 
 #rsconnect::setAccountInfo(name='oysterprojectck',
@@ -11,7 +11,7 @@ library(rsconnect)
 
 
 
-data<- read.csv ("data.csv", header=T)
+data<- read.csv ("data/data.csv", header=T)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(theme = shinytheme("yeti"),
