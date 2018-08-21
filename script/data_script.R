@@ -2,7 +2,7 @@
 
 library(dplyr)
 
-landings <- read.csv("data/landings.csv", header= T)
+landings <- read.csv("landing_app/data/landings.csv", header= T)
 
 #State Data modification
 state_land <- subset(landings, select= c(Year,State_landings))
@@ -59,7 +59,7 @@ suwt<- suw_trips %>% select(Year, area, measurement)
 
 
 suw_ptrips <- subset(landings, select= c(Year,Suw_per_trip))
-suw_ptrips$area <- (suw_ptrips$area= "Suwanee per Trip")
+suw_ptrips$area <- (suw_ptrips$area= "Suwannee per Trips")
 suw_ptrips$measurement<- paste(landings$Suw_per_trip)
 
 suwpt<- suw_ptrips %>% select(Year, area, measurement)
@@ -73,6 +73,13 @@ suwpt<- suw_ptrips %>% select(Year, area, measurement)
 #data<- full_join(data, state_ptrips,  by= c("Year", "area", "measurement"))
 #data<- data %>% select(Year, area, measurement)
 
-data<- rbind(statel,statet, statept, apalachl,apalacht,apalachpt, suwl, suwt, suwpt)
+data<- rbind (statel,statet, statept,apalachl,apalacht,apalachpt,suwl, suwt, suwpt)
 
+state_data<- rbind(statel,statet, statept)
+apalach_data<-rbind(apalachl,apalacht,apalachpt)
+suw_data<-rbind(suwl, suwt, suwpt)
+
+write.csv(state_data, file = "state.csv")
+write.csv(apalach_data, file = "apalach.csv")
+write.csv(suw_data, file = "suw.csv")
 write.csv(data, file = "data.csv")

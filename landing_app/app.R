@@ -19,20 +19,33 @@ ui <- fluidPage(theme = shinytheme("yeti"),
               
    # Application title
 
-   titlePanel("Landings Comparison"),
+   titlePanel("Landings Area"),
+
    
    sidebarLayout(
       sidebarPanel(
-        selectInput("area1", label= h4("Area"), 
-                    choices=unique(data$area), selected = "Apalach Landings"),
         
-        selectInput("area2", label= h4("Comparison Area"), 
-                    choices=unique(data$area), selected= "State Landings")
+        h4("Help text"),
+        helpText("Please note that the y-axis on the comparison", 
+                 "landings plots will differ, to allow for a better",
+                 "representation of trends."),
+        
+        selectInput("area1", label= h4("Apalachicola"), 
+                    choices=c("Apalach Landings", "Apalach Trips", "Apalach Per Trips" ), selected = "Apalach Landings"),
+        
+        selectInput("area2", label= h4("State"), 
+                    choices=c("State Landings", "State Trips","State Per Trips", "No Area" ), selected= "State Landings"),
+        
+        selectInput("area3", label= h4("Suwannee"), 
+                    choices=c("Suwannee Landings", "Suwannee Trips", "Suwannee per Trips", "No Area" ), selected= "Suwannee Landings")
       ),
+  
       
       # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("plot")
+        width = 8,
+        #h2("Comparison Figures"),
+        plotOutput("plot",height = "600px")
       )
    )
 )
@@ -43,7 +56,7 @@ server <- function(input, output) {
   plotInput <- reactive({
     
       data <- data %>% 
-        filter(area == input$area1|area == input$area2)
+        filter(area == input$area1|area == input$area2|area == input$area3)
     
       
     ggplot(data=data, aes(x= Year, y= measurement)) +
@@ -52,7 +65,7 @@ server <- function(input, output) {
       geom_line(linetype = "dashed")+
       scale_x_continuous(limits=c(1986,2017), breaks=c(1986,1990,1994,1998,2002,2006,2010,2014,2018)) +
       theme(panel.border = element_rect(color = "black", size = 0.5, fill = NA, linetype="solid"),axis.text.x = element_text(angle = 90, hjust = 1, size= 12)) +
-      facet_wrap(~area, ncol=1, scales= "free_y")
+      facet_wrap(~area, ncol=1, scales="free_y")
     
     
    })
