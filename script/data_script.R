@@ -1,6 +1,6 @@
 # Landings data processing script
 
-library(dplyr)
+library("dplyr")
 
 landings <- read.csv("landing_app/data/landings.csv", header= T)
 
@@ -79,7 +79,7 @@ state_data<- rbind(statel,statet, statept)
 apalach_data<-rbind(apalachl,apalacht,apalachpt)
 suw_data<-rbind(suwl, suwt, suwpt)
 
-write.csv(state_data, file = "state.csv")
-write.csv(apalach_data, file = "apalach.csv")
-write.csv(suw_data, file = "suw.csv")
-write.csv(data, file = "data.csv")
+write.csv(state_data, file = "landing_app/data/state.csv")
+write.csv(apalach_data, file = "landing_app/data/apalach.csv")
+write.csv(suw_data, file = "landing_app/data/suw.csv")
+write.csv(data, file = "landing_app/data/data.csv")

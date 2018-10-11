@@ -63,8 +63,15 @@ server <- function(input, output) {
       labs(x= "Year", y="Pounds")+
       geom_point( size=2)+
       geom_line(linetype = "dashed")+
-      scale_x_continuous(limits=c(1986,2017), breaks=c(1986,1990,1994,1998,2002,2006,2010,2014,2018)) +
-      theme(panel.border = element_rect(color = "black", size = 0.5, fill = NA, linetype="solid"),axis.text.x = element_text(angle = 90, hjust = 1, size= 12)) +
+      scale_x_continuous(limits=c(1986,2018), breaks=c(1986,1990,1994,1998,2002,2006,2010,2014,2018)) +
+    theme(panel.border = element_rect(color = "black", size = 0.5, fill = NA, linetype="solid"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          axis.text=element_text(size=15),
+          axis.title=element_text(size=15,face="bold"),
+          plot.title =element_text(size=20, face='bold'),
+          axis.text.x = element_text(angle = 90, hjust = 1),
+          strip.text = element_text(face="bold", size=15)) +
       facet_wrap(~area, ncol=1, scales="free_y")
     
     
